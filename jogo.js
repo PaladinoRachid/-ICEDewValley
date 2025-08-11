@@ -37,7 +37,7 @@ function decideEstado()
     //vetor de possibilidades de estado
     const possibilidadesEstado = ["vazio", "planta", "pedra", "ervaDaninha"];
     // retorno do sorteiaValor -> 0 = vazio, 1 = planta, 2 = pedra, 3 = ervaDaninha
-    return possibilidadesEstado[sorteiaValor( possibilidadesEstado.length)];
+    return possibilidadesEstado[sorteiaValorInteiro( possibilidadesEstado.length)];
 }
 
 function decidePlanta()
@@ -45,7 +45,7 @@ function decidePlanta()
     //função análoga à função decideEstado
     const possibilidadesPlanta = ["trigo", "café", "cenoura"];
     // retorno do sorteiaValor -> 0 = trigo, 1 = café, 2 = cenoura 
-    return possibilidadesPlanta[sorteiaValor(possibilidadesPlanta.length)];
+    return possibilidadesPlanta[sorteiaValorInteiro(possibilidadesPlanta.length)];
 }
 
 function sorteiaValorInteiro(val)
