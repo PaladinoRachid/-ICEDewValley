@@ -1,4 +1,6 @@
 
+
+//terreno     
 function criaTerreno(){
     const terreno = [];
     for (let i = 0; i < 144; i++) {
@@ -34,22 +36,27 @@ function decideEstado()
 {
     //vetor de possibilidades de estado
     const possibilidadesEstado = ["vazio", "planta", "pedra", "ervaDaninha"];
-    // sorteia um valor pertencente ao intervalo [0,1)
-    let sorteiaValor = Math.random();
-    // faz ser de [0, 4)
-    sorteiaValor = sorteiaValor*4;
-    // pega a parte inteira do valor sorteado -- valores possíveis são 0, 1, 2, 3
-    sorteiaValor = Math.floor(sorteiaValor);
-    //...    
-    // retorna o estado sorteado
-    return possibilidadesEstado[sorteiaValor];
+    // retorno do sorteiaValor -> 0 = vazio, 1 = planta, 2 = pedra, 3 = ervaDaninha
+    return possibilidadesEstado[sorteiaValor( possibilidadesEstado.length)];
 }
 
 function decidePlanta()
 {
     //função análoga à função decideEstado
     const possibilidadesPlanta = ["trigo", "café", "cenoura"];
-    const sorteiaValor = Math.floor(Math.random() * 3);
-    // 0 = trigo, 1 = café, 2 = cenoura
-    return possibilidadesPlanta[sorteiaValor];
+    // retorno do sorteiaValor -> 0 = trigo, 1 = café, 2 = cenoura 
+    return possibilidadesPlanta[sorteiaValor(possibilidadesPlanta.length)];
 }
+
+function sorteiaValorInteiro(val)
+{
+    // sorteia um valor pertencente ao intervalo [0,1)
+    let sorteiaValor = Math.random();
+    // faz ser de [0, val)
+    sorteiaValor = sorteiaValor*val;
+    // pega a parte inteira do valor sorteado -- valores possíveis são 0, 1, 2, ..., val-1
+    sorteiaValor = Math.floor(sorteiaValor);
+    //...    
+    return sorteiaValor;
+}
+//..........................................
