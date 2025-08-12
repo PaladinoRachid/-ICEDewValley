@@ -48,13 +48,13 @@ function calculaCiclosCrescimento(slot)
 {
     switch(slot.planta.plantado) 
     {
-        case "trigo":
+        case "cenoura":
             slot.planta.ciclosCresscimento = 2;
             break;  
-        case"cenoura":
+        case"batata":
             slot.planta.ciclosCresscimento = 4;    
             break;
-        case "café":
+        case "tomate":
             slot.planta.ciclosCresscimento = 6;    
             break;    
     }
@@ -71,7 +71,7 @@ function decideEstado()
 function decidePlanta()
 {
     //função análoga à função decideEstado
-    const possibilidadesPlanta = ["trigo", "cenoura", "café"];
+    const possibilidadesPlanta = ["cenoura", "batata", "tomate"];
     // retorno do sorteiaValor -> 0 = trigo, 1 = cenoura 2 = café 
     return possibilidadesPlanta[sorteiaValorInteiro(possibilidadesPlanta.length)];
 }

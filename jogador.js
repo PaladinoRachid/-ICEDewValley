@@ -7,8 +7,9 @@ export function criarJogador()
         // em caso de semente, cenoura, trigo ou café 
         controle: 
         {
-            acao: null,
-            semente: null,
+            //com valores para testes
+            acao: "plantar",
+            semente: "cenoura",
         },
         dinheiro: 100,
         silo: 

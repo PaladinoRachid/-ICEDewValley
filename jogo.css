@@ -1,23 +1,29 @@
-* {
+* 
+{
     box-sizing: border-box;
     margin: 0;
 }
 
-html, body {
+html, body 
+{
     height: 100%;
 }
 
-h1{
+h1
+{
     text-align: center;
-    color: lightseagreen;
-    background-color: yellow;
+    text-emphasis: dotted;
+    color: burlywood;
+    background-color: brown;
 }
 
-#jogo {
+#jogo 
+{
     height: 100%;
 }
 
-.terreno {
+.terreno 
+{
     display: grid;
     background-color: green;
     grid-template-columns: repeat(12, 1fr);
@@ -26,7 +32,8 @@ h1{
     height: 80%;
 }
     
-.barraAtividades {
+.barraAtividades 
+{
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -37,9 +44,53 @@ h1{
     align-items: center;
 }
 
-.slot {
+.slot 
+{
     border: 0.8px solid black;
     background-color: green;
     position: relative;
 }
 
+.slot[estado="vazio"] 
+{
+    background-color: green; 
+}
+
+
+.slot[estado="arado"] 
+{
+  background-color: burlywood; 
+}
+
+.slot[estado="plantado"] 
+{
+  background-color: red; 
+}
+
+.slot[estado="pedra"] 
+{
+  background-color: grey; 
+}
+
+.slot[estado="ervaDaninha"]
+{
+  background-color: lightgreen; 
+}
+
+.slot[planta = "batata"]
+{
+  background-color: white;
+  background-size: cover;
+}
+
+.slot[planta = "cenoura"]
+{
+  background-color: orange;
+  background-size: cover;
+}
+
+.slot[planta = "tomate"] 
+{
+  background-color: red;
+  background-size: cover;
+}

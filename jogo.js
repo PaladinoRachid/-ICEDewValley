@@ -30,10 +30,10 @@ function base(jogo)
 function desenhaTerreno(terreno, jogo)
 {
     const fundoTerreno = jogo.querySelector('.terreno');
-    terreno.forEach(slot => adicionaSlot(fundoTerreno, slot));
+    terreno.forEach(slot => desenhaSlot(fundoTerreno, slot));
 }
 
-function adicionaSlot (fundoTerreno,slot) 
+function desenhaSlot (fundoTerreno,slot) 
 {
     const divSlot = document.createElement('div');
     //classe slot
