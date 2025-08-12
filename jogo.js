@@ -5,17 +5,18 @@ import { criarJogador } from './jogador.js';
 
 const jogo = document.querySelector('#jogo');
 
-base(jogo);
-//iniciaJogo();
+iniciaJogo(jogo);
 
-/*
-function iniciaJogo()
+function iniciaJogo(jogo)
 {
-    const terreno1 = criaTerreno();
-    const jogador2 = criarJogador();
+    base(jogo);
+    const terreno = criaTerreno();
+    const jogador = criarJogador();
+    desenhaTerreno(terreno, jogo);
+   // desenhaBarraAtividades(jogador, jogo);
 
 }
-*/
+
 function base(jogo)
 {
     const fundoTerreno = document.createElement('div');
@@ -26,4 +27,24 @@ function base(jogo)
     jogo.append(fundoBarraAtividades); 
 }
 
-//function desenhaTerreno()
+function desenhaTerreno(terreno, jogo)
+{
+    const fundoTerreno = jogo.querySelector('.terreno');
+    terreno.forEach(slot => adicionaSlot(fundoTerreno, slot));
+}
+
+function adicionaSlot (fundoTerreno,slot) 
+{
+    const divSlot = document.createElement('div');
+    //classe slot
+    divSlot.classList.add('slot');
+    // seta id, estddo e planta comoa atributos do slot
+    divSlot.setAttribute('id', slot.id);
+    divSlot.setAttribute('estado', slot.estado);
+    if(slot.planta.plantado) 
+    {
+        divSlot.setAttribute('planta', slot.planta.plantado);
+    }
+    //adiciona o slot ao terreno
+    fundoTerreno.append(divSlot);
+} 

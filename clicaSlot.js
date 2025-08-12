@@ -1,75 +1,93 @@
 
 //ciclar nos slots    
-export function clicaSlot(id, acao, sementePlanta)
+export function clicaSlot(slot, contrrole)
 {
-    switch(acao) 
+    switch(controle.acao) 
     {
         case "plantar":
-            plantar(id, sementePlanta);
+            plantar(slot, controle.semente);
             break;
         case "regar":
-            regar(id);
+            regar(slot);
             break;
         case "arar":
-            arar(id);
+            arar(slot);
             break; 
         case "colher":
-            colher(id);
+            colher(slot);
             break;
         case "arrancar":
-            arrancar(id);
+            arrancar(slot);
             break;
             
     }
-
-    function plantar(id, sementePlanta) 
-    {
-        //verifica se o slot está pronto para a plantio 
-        if(terreno[id].estado === "arado")
-        {
-
-            terreno[id].estado = "plantado";
-            terreno[id].planta.plantado = sementePlanta;
-            terreno[id].planta.sede = true;
-            calculaCiclosCrescimento(terreno[id]);
-        }
-    }
-
-    function regar(id) 
-    {
-        //verifica se o slot está plantado
-        if(terreno[id].estado === "plantado")
-        {
-                terreno[id].planta.sede = false;
-                terreno[id].planta.tempoSede = 0;
-        }
-    }
 }
 
-function arar(id) 
+function plantar(slot, sementePlanta) 
 {
-    if(terreno[id].estado === "vazio") {
-        terreno[id].estado = "arado";
+    //verifica se o slot está pronto para a plantio 
+    if(slot.estado === "arado")
+    {
+
+        slot.estado = "plantado";
+        slot.planta.plantado = sementePlanta;
+        slot.planta.sede = true;
+        calculaCiclosCrescimento(slot);
     }
 }
 
-function colher(id) 
+function regar(slot) 
 {
     //verifica se o slot está plantado
-    if(terreno[id].estado === "plantado") {
-        zeraSlot(terreno[id]);
+    if(slot.estado === "plantado")
+    {
+            slot.planta.sede = false;
+            slot.planta.tempoSede = 0;
     }
-    //preciso adicionar ao estoque do fazendeiro
 }
 
 
-function arrancar(id) 
+function arar(slot) 
+{
+    if(slot.estado === "vazio") {
+        slot.estado = "arado";
+    }
+}
+
+function colher(slot) 
 {
     //verifica se o slot está plantado
-    if(terreno[id].estado === "plantado") {       
-        zeraSlot(terreno[id]);
+    if(slot.estado === "plantado") 
+    {
+        colocaSilo(slot.planta.plantado);
+        zeraSlot(slot);
     }
-    //igual ao colher, mas não adiciona ao estoque e sim descarta    
+}
+
+function colocaSilo(planta) 
+{
+    switch(planta) 
+    {
+        case "trigo":
+            jogador.silo.trigo++;
+            break;
+        case "cenoura":
+            jogador.silo.cenoura++;
+            break;
+        case "café":
+            jogador.silo.café++;
+            break;
+    }
+}
+
+function arrancar(slot) 
+{
+    //verifica se o slot está plantado
+    if(slot.estado === "plantado")
+    {       
+        zeraSlot(slot);
+    }
+    //igual ao colher, mas com descarte 
 }
 
 

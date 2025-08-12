@@ -23,7 +23,8 @@ export function criarJogador()
             cenoura: 5,
             café: 5
         },
+        //registra o tempo de jogo
         semana: 0
     };
-    return jogador;
+    return fazendeiro;
 }
