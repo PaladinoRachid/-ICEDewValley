@@ -1,6 +1,6 @@
 
 //ciclar nos slots    
-export function clicaSlot(slot, contrrole)
+export function clicaSlot(slot, controle)
 {
     switch(controle.acao) 
     {
@@ -19,6 +19,9 @@ export function clicaSlot(slot, contrrole)
         case "arrancar":
             arrancar(slot);
             break;
+        case "limpar":
+            limpar(slot);
+            break;
             
     }
 }
@@ -32,7 +35,7 @@ function plantar(slot, sementePlanta)
         slot.estado = "plantado";
         slot.planta.plantado = sementePlanta;
         slot.planta.sede = true;
-        calculaCiclosCrescimento(slot);
+       // calculaCiclosCrescimento(slot);
     }
 }
 
@@ -68,13 +71,13 @@ function colocaSilo(planta)
 {
     switch(planta) 
     {
-        case "trigo":
+        case "tomate":
             jogador.silo.trigo++;
             break;
         case "cenoura":
             jogador.silo.cenoura++;
             break;
-        case "café":
+        case "batata":
             jogador.silo.café++;
             break;
     }
@@ -90,7 +93,14 @@ function arrancar(slot)
     //igual ao colher, mas com descarte 
 }
 
-
+function limpar(slot)
+{
+    //vazio, com planta ou arado: do nothing!
+    if(slot.estado === "pedra" || slot.estado === "ervaDaninha") 
+    {
+        zeraSlot(slot);
+    }
+}
 
 //refatoração de arrancar e colher 
 function zeraSlot(slot) 

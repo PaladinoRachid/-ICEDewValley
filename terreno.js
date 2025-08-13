@@ -31,8 +31,8 @@ function criaSlot(i)
 
     if(slot.estado === "plantado") 
     {
-        decideEstadoPlanta(slot);
-        calculaCiclosCrescimento(slot);
+        //decideEstadoPlanta(slot);
+        //calculaCiclosCrescimento(slot);
     } 
 
     return slot;

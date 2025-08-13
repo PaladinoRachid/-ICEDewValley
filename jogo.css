@@ -1,70 +1,96 @@
+/*
+a título de ficar claro para mim mesmo enquanto eu fazia 
+e também para eu estudar depois,
+busquei sempre que aparecia uma propriedade nova
+deixar algum cometário breve explicanddo-a 
+-- a maioria das explicações foi extraída de 'MDN Web Docs'
+*/
 * 
 {
-    box-sizing: border-box;
-    margin: 0;
+  /* altura e largura incluem padding e border. */
+  box-sizing: border-box;
+  /* reduz a margem de todos os elementos a zero */
+  margin: 0;
 }
 
 html, body 
 {
-    height: 100%;
+  /* altura */
+  height: 100%;
 }
 
 h1
 {
-    text-align: center;
-    text-emphasis: dotted;
-    color: burlywood;
-    background-color: brown;
+  /* alinhamento horizontal do texto conteudo de h1 */
+  text-align: center;
+  /* cor do título  */
+  color: burlywood;
+  /* cor de fundo */
+  background-color: brown;
 }
 
 #jogo 
 {
-    height: 100%;
+  height: 100%;
 }
 
 .terreno 
 {
-    display: grid;
-    background-color: green;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    width: 100%;
-    height: 80%;
+  /* display de grade aplicado  */
+  display: grid;
+  background-color: green;
+  /*  divide em 12 colunas de tamanho igual */
+  grid-template-columns: repeat(12, 1fr);
+  /* divide em 12 linhas de tamanho igual  */
+  grid-template-rows: repeat(12, 1fr);
+  /* largura */
+  width: 100%;
+  height: 80%;
 }
     
 .barraAtividades 
 {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 102px;
-    background-color:brown;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  /*The element is removed from the normal document flow, and no space is created for the element in the page layout.  */
+  position: absolute;
+  /* the final position is determined by the value of bottom */
+  bottom: 0;
+  width: 100%;
+  height: 105px;
+  background-color:brown;
+  /* No modelo de layout do Flexbox, os filhos de um contêiner flex podem ser dispostos em qualquer direção,
+  e podem "flexibilizar" seus tamanhos, crescendo para preencher o espaço vazio ou diminuindo
+  para evitar o transbordamento do elemento pai */
+  display: flex;
+  /* defines how the browser distributes space between and around content items along the main axis of a flex container,
+   neste caso distribui de forma uniforme */
+  justify-content: space-around;
+  /*align-items property sets the align-self value on all direct children as a group.
+  In flexbox, it controls the alignment of items on the cross axis. 
+  neste caso centraliza sobre a linha do eixo */
+  align-items: center;
 }
 
 .slot 
 {
-    border: 0.8px solid black;
-    background-color: green;
-    position: relative;
+  background-color: green;
+  /* posiciona segundo o fluxo normal por ora */
+  position: relative;
 }
 
 .slot[estado="vazio"] 
 {
-    background-color: green; 
+  background-color: green; 
 }
 
 
 .slot[estado="arado"] 
 {
-  background-color: burlywood; 
+  background-color:black; 
 }
 
 .slot[estado="plantado"] 
 {
-  background-color: red; 
+  background-color: goldenrod; 
 }
 
 .slot[estado="pedra"] 
@@ -93,4 +119,27 @@ h1
 {
   background-color: red;
   background-size: cover;
+}
+
+.barraFerramentas 
+{
+
+  display: flex;
+  height: 100%;
+  background-color: lightsalmon;
+  /* O eixo principal do flex container é definido para ser o mesmo que a direção do texto.
+  Os pontos de início e término principais são iguais à direção do conteúdo. */
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+.silo{
+  background-color: brown;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  /* The items are packed flush to each other toward the center of the alignment container along the main axis. */
+  justify-content: center;
 }
