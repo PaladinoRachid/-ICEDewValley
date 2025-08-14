@@ -9,23 +9,23 @@ export function criarJogador()
         {
             //com valores para testes
             acao: "plantar",
-            semente: "cenoura",
+            semente: "tomate",
         },
         dinheiro: 100,
-        silo: 
+        siloEstoque: 
         {
             trigo: 0,
             cenoura: 0,
             café: 0
         },
-        sementes:
+        siloSementes:
          {
             trigo: 5,
             cenoura: 5,
             café: 5
         },
         //registra o tempo de jogo
-        semana: 0
+        
     };
     return fazendeiro;
 }

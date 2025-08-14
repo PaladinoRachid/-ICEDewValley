@@ -134,7 +134,9 @@ h1
   align-items: center;
   width: 50%;
 }
-.silo{
+
+.silo
+{
   background-color: brown;
   height: 100%;
   width: 50%;
@@ -142,4 +144,33 @@ h1
   flex-direction: row;
   /* The items are packed flush to each other toward the center of the alignment container along the main axis. */
   justify-content: center;
+}
+
+.ferramenta
+{
+  /* A cor do texto do botão */
+  color: whitesmoke;
+  /* A cor de fundo do botão */
+  background-color: red;
+  /* O espaçamento interno do botão para o texto n ficar apertado */
+  padding: 10px;
+  /* A borda do botão */
+  border: none;
+  /* Arredonda*/
+  border-radius: 50px;
+}
+
+
+.selecionado
+{
+  /* A cor do texto do botão */
+  color: whitesmoke;
+  /* A cor de fundo do botão */
+  background-color: green;
+  /* O espaçamento interno do botão para o texto n ficar apertado */
+  padding: 10px;
+  /* A borda do botão */
+  border: none;
+  /* Arredonda*/
+  border-radius: 50px;
 }

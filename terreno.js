@@ -26,7 +26,8 @@ function criaSlot(i)
             crescimentoMaximo: false,
             sede: false,
             tempoSede: 0
-        }
+        },
+        semana: 0
     };
 
     if(slot.estado === "plantado") 
