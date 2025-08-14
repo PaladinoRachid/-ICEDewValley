@@ -47,7 +47,7 @@ h1
   width: 100%;
   height: 80%;
 }
-    
+
 .barraAtividades 
 {
   /*The element is removed from the normal document flow, and no space is created for the element in the page layout.  */
@@ -142,15 +142,13 @@ h1
   width: 50%;
   display: flex;
   flex-direction: row;
-  /* The items are packed flush to each other toward the center of the alignment container along the main axis. */
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .ferramenta
 {
-  /* A cor do texto do botão */
   color: whitesmoke;
-  /* A cor de fundo do botão */
   background-color: red;
   /* O espaçamento interno do botão para o texto n ficar apertado */
   padding: 10px;
@@ -161,16 +159,22 @@ h1
 }
 
 
+
+.semente
+{
+  background-color: red;
+  color: whitesmoke;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+}
+
+
 .selecionado
 {
-  /* A cor do texto do botão */
   color: whitesmoke;
-  /* A cor de fundo do botão */
   background-color: green;
-  /* O espaçamento interno do botão para o texto n ficar apertado */
   padding: 10px;
-  /* A borda do botão */
   border: none;
-  /* Arredonda*/
   border-radius: 50px;
 }

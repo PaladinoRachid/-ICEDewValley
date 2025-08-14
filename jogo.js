@@ -13,6 +13,7 @@ function iniciaJogo(jogo) {
   base(jogo);
   desenhaTerreno(terreno, jogo);
   desenhaBarraFerramentas(jogo);
+  desenhaSilo(jogo);
 }
 
 function base(jogo) {
@@ -70,8 +71,7 @@ function cliqueTerreno(evento) {
   //atualizaBarraAtividades(jogador);
 }
 
-function desenhaBarraFerramentas( jogo)
-{
+function desenhaBarraFerramentas(jogo) {
   const ferramentas = ["ancinho", "regador", "mao", "lixo", "pá"];
   const acoes = ["arar", "regar", "colher", "arrancar", "limpar"];
   for (let i = 0; i < ferramentas.length; i++) {
@@ -82,28 +82,60 @@ function desenhaBarraFerramentas( jogo)
     ferramenta.classList.add("ferramenta");
     ferramenta.textContent = ferramentas[i];
     ferramenta.setAttribute("acao", acoes[i]);
-     //adiciona o botão na barra de ferramentas
-    barraFerramentas.append(ferramenta); 
+    //adiciona o botão na barra de ferramentas
+    barraFerramentas.append(ferramenta);
     ferramenta.addEventListener("click", cliqueFerramenta);
-     
   }
 }
 
-function cliqueFerramenta(evento)
-{
+function desenhaSilo(jogo) {
+  const silo = jogo.querySelector(".silo");
+  const sementes = ["cenoura", "batata", "tomate"];
+  //para cada semente, cria um botão, adiciona texto e um evento ao clicar
+  for (let i = 0; i < sementes.length; i++) {
+    const botaoSemente = document.createElement("button");
+    botaoSemente.classList.add("semente");
+    botaoSemente.textContent = sementes[i];
+    botaoSemente.setAttribute("acao", "plantar");
+    botaoSemente.setAttribute("tipoSemente", sementes[i]);
+    //adiciona o botão no silo / barra de atividades
+    silo.append(botaoSemente);
+    botaoSemente.addEventListener("click", cliqueSemente);
+  }
+}
 
-  // efeito do clique (atualiza o controle)
+function cliqueSemente(evento) {
+  //pega o botao
   const botao = evento.target;
-  const acao = botao.getAttribute("acao");
-  jogador.controle.acao = acao;
+  //pega a semente
+  const tipoSemente = botao.getAttribute("tipoSemente");
 
+  //atualiza o controle
+  jogador.controle.acao = "plantar";
+  jogador.controle.semente = tipoSemente;
   //efeito visual do clique (atualiza a classe do botão)
-  const botoes = document.querySelectorAll(".ferramenta");
-  for(let i = 0; i < botoes.length; i++) 
-  {
+  // .barraAtividades button seleciona todos os botões dentro da barra de atividades
+  const botoes = document.querySelectorAll(".barraAtividades button");
+  for (let i = 0; i < botoes.length; i++) {
     botoes[i].classList.remove("selecionado");
   }
-    botao.classList.add("selecionado");
+  botao.classList.add("selecionado");
+}
+
+function cliqueFerramenta(evento) {
+  
+  const botao = evento.target;
+  //pega a acao 
+  const acao = botao.getAttribute("acao");
+  // efeito do clique (atualiza o controle)
+  jogador.controle.acao = acao;
+
+  //efeito visual do clique 
+  const botoes = document.querySelectorAll(".barraAtividades button");
+  for (let i = 0; i < botoes.length; i++) {
+    botoes[i].classList.remove("selecionado");
+  }
+  botao.classList.add("selecionado");
 }
 
 function atualizaSlot(slotClicado, slot) {
