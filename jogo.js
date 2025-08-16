@@ -160,9 +160,10 @@ function desenhaSilo(jogador, loja, jogo) {
 
     const auxQuantidade = jogador.siloSementes[sementeNome];
 
-    exibidorSemente.textContent = `${auxQuantidade}`;
+    exibidorSemente.textContent = `Quantidade: ${auxQuantidade}`;
     botaoSemente.textContent = sementes[i];
-    botaoSementeComprar.textContent = "Comprar";
+    const auxPreco = loja.valorSemnetes[sementeNome];
+    botaoSementeComprar.textContent = `Comprar ($${auxPreco})`;
 
     botaoSemente.setAttribute("acao", "plantar");
     botaoSemente.setAttribute("tipoSemente", sementes[i]);
