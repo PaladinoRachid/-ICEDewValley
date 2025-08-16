@@ -35,6 +35,7 @@ function base(jogo) {
   const silo = document.createElement("div");
   silo.classList.add("silo");
 
+
   //  const statusFazenda = document.createElement("div");
 
   //adiciona os compoentes da barra de atividades
@@ -138,13 +139,30 @@ function desenhaSilo(jogo) {
   const sementes = ["cenoura", "batata", "tomate"];
   //para cada semente, cria um botão, adiciona texto e um evento ao clicar
   for (let i = 0; i < sementes.length; i++) {
+    const semente = document.createElement("div");
+    const exibidorSemente = document.createElement("div");
     const botaoSemente = document.createElement("button");
-    botaoSemente.classList.add("semente");
+    const botaoSementeComprar = document.createElement("button");
+
+    semente.classList.add("semente");
+    botaoSemente.classList.add("botaoSemente");
+    exibidorSemente.classList.add("exibidorSemente");
+    botaoSementeComprar.classList.add("botaoSementeComprar");
+
+    const sementeNome = sementes[i];
+    const auxQuantidade = jogador.siloSementes[sementeNome];
+
+    exibidorSemente.textContent = `${auxQuantidade}`;
     botaoSemente.textContent = sementes[i];
+    botaoSementeComprar.textContent = "Comprar";
+
     botaoSemente.setAttribute("acao", "plantar");
     botaoSemente.setAttribute("tipoSemente", sementes[i]);
     //adiciona o botão no silo / barra de atividades
-    silo.append(botaoSemente);
+    semente.append(botaoSemente);
+    semente.append(exibidorSemente);
+    semente.append(botaoSementeComprar);
+    silo.append(semente);
     botaoSemente.addEventListener("click", cliqueSemente);
   }
 }

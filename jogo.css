@@ -196,11 +196,30 @@ h1
 
 .semente
 {
-  background-color: red;
+  background-color: brown;
+  height: 100% ;
+  width: auto;
   color: whitesmoke;
+  /* organiza os cojuntos botao/exibidor/comprar */
+  justify-content: space-around;
+  /*centraliza o numero*/
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.botaoSemente
+{
+  background-color: red;
+  border-radius: 50px;
   padding: 10px;
   border: none;
-  border-radius: 50px;
+}
+
+.botaoExibidor
+{
+  background-color: aquamarine;
 }
 
 
