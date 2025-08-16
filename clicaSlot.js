@@ -10,6 +10,7 @@ export function clicaSlot(slot, jogador)
         case "regar":
             regar(slot);
             //regar tem efeito uma vez por semana
+            if(slot.estado === "plantado")
             slot.controleTempo = false;
             break;
         case "arar":
