@@ -1,5 +1,5 @@
 
-//ciclar nos slots    
+//ciclar nos   slots    
 export function clicaSlot(slot, jogador)
 {
     switch(jogador.controle.acao) 
