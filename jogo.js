@@ -1,20 +1,26 @@
 import { criaTerreno } from "./terreno.js";
 import { criarJogador } from "./jogador.js";
-import { clicaSlot, arrancar } from "./clicaSlot.js";
+import { clicaSlot } from "./clicaSlot.js";
+import { criarLoja } from "./loja.js";
+import { avancaTempoSlot } from "./avancatempo.js";
 //...........................................................................................
 //Pablo Rachid de Bem --- 202365126AC
+//o que falta:
+//1. imagens
+//2. colocar preços nas sementes
+//3. colocar opcao de venda das plantas (crescidas), com botao de venda, contador e preço
 const jogo = document.querySelector("#jogo");
 const terreno = criaTerreno();
 const jogador = criarJogador();
+const loja = criarLoja();
 
-iniciaJogo(jogo, terreno, jogador);
+iniciaJogo(jogo, terreno, jogador, loja);
 
-function iniciaJogo(jogo, terreno, jogador) {
+function iniciaJogo(jogo, terreno, jogador, loja) {
   base(jogo);
   desenhaTerreno(terreno, jogo);
-
   desenhaBarraFerramentas(jogo);
-  desenhaSilo(jogo);
+  desenhaSilo(jogador, loja, jogo);
   desenhaBarraStatus(jogo, jogador, terreno);
 }
 
@@ -34,7 +40,6 @@ function base(jogo) {
 
   const silo = document.createElement("div");
   silo.classList.add("silo");
-
 
   //  const statusFazenda = document.createElement("div");
 
@@ -62,8 +67,7 @@ function desenhaSlot(fundoTerreno, slot) {
   if (slot.planta.plantado) {
     divSlot.setAttribute("planta", slot.planta.plantado);
   }
-  if(slot.controleTempo)
-    divSlot.setAttribute("controleTempo", "true")
+  if (slot.controleTempo) divSlot.setAttribute("controleTempo", "true");
   //adiciona o slot ao terreno
   fundoTerreno.append(divSlot);
   divSlot.addEventListener("click", cliqueTerreno);
@@ -76,8 +80,9 @@ function cliqueTerreno(evento) {
   const id = slotClicado.getAttribute("id");
   //altera o array terreno
   clicaSlot(terreno[id], jogador);
-  //atualiza a parte visual
+  //atualiza a parte visual (falta o contador de semente)
   atualizaSlot(slotClicado, terreno[id]);
+  atualizaSemente(jogador.controle.semente, jogador);
   //atualizaBarraAtividades(jogador);
 }
 
@@ -134,11 +139,14 @@ function desenhaBarraFerramentas(jogo) {
   }
 }
 
-function desenhaSilo(jogo) {
+function desenhaSilo(jogador, loja, jogo) {
   const silo = jogo.querySelector(".silo");
   const sementes = ["cenoura", "batata", "tomate"];
   //para cada semente, cria um botão, adiciona texto e um evento ao clicar
   for (let i = 0; i < sementes.length; i++) {
+
+    const sementeNome = sementes[i];
+
     const semente = document.createElement("div");
     const exibidorSemente = document.createElement("div");
     const botaoSemente = document.createElement("button");
@@ -147,9 +155,9 @@ function desenhaSilo(jogo) {
     semente.classList.add("semente");
     botaoSemente.classList.add("botaoSemente");
     exibidorSemente.classList.add("exibidorSemente");
+    exibidorSemente.setAttribute("id", sementeNome);
     botaoSementeComprar.classList.add("botaoSementeComprar");
 
-    const sementeNome = sementes[i];
     const auxQuantidade = jogador.siloSementes[sementeNome];
 
     exibidorSemente.textContent = `${auxQuantidade}`;
@@ -158,29 +166,56 @@ function desenhaSilo(jogo) {
 
     botaoSemente.setAttribute("acao", "plantar");
     botaoSemente.setAttribute("tipoSemente", sementes[i]);
+
     //adiciona o botão no silo / barra de atividades
     semente.append(botaoSemente);
     semente.append(exibidorSemente);
     semente.append(botaoSementeComprar);
     silo.append(semente);
-    botaoSemente.addEventListener("click", cliqueSemente);
+    
+    botaoSemente.addEventListener("click", (evento) => {
+      //pega o botao
+      const botao = evento.target;
+      //pega a semente
+      const tipoSemente = botao.getAttribute("tipoSemente");
+      cliqueSemente(tipoSemente, jogador, botao);
+    });
+    botaoSementeComprar.addEventListener("click", () => {
+      sementeComprar(jogo, jogador, loja, sementeNome);
+    });
   }
 }
 
-function cliqueSemente(evento) {
-  //pega o botao
-  const botao = evento.target;
-  //pega a semente
-  const tipoSemente = botao.getAttribute("tipoSemente");
+function sementeComprar(jogo, jogador, loja, semente) {
+  if (loja.valorSemnetes[semente] <= jogador.dinheiro) {
+    jogador.siloSementes[semente]++;
+    jogador.dinheiro = jogador.dinheiro - loja.valorSemnetes[semente];
+  }
 
+  atualizaSemente(semente, jogador);
+  atualizaDinheiro(jogo, jogador);
+}
+
+function atualizaSemente(semente, jogador) {
+  const exibidor = document.getElementById(semente);
+  const auxQuantidade = jogador.siloSementes[semente];
+  exibidor.textContent = `${auxQuantidade}`;
+}
+
+function atualizaDinheiro(jogo, jogador) {
+  const dinheiroExibidor = jogo.querySelector(".dinheiro");
+  dinheiroExibidor.textContent = `Dinheiro: $${jogador.dinheiro}`;
+}
+
+function cliqueSemente(tipoSemente, jogador,  botao) {
   //atualiza o controle
   if (jogador.siloSementes[tipoSemente] <= 0) {
     alert("Você não tem sementes suficientes!");
     return;
   }
 
-  jogador.siloSementes[tipoSemente]--;
-  console.log(jogador.siloSementes[tipoSemente]);
+  /* jogador.siloSementes[tipoSemente]--; */
+  /*console.log(jogador.siloSementes[tipoSemente]); */
 
   jogador.controle.acao = "plantar";
   jogador.controle.semente = tipoSemente;
@@ -191,6 +226,7 @@ function cliqueSemente(evento) {
     botoes[i].classList.remove("selecionado");
   }
   botao.classList.add("selecionado");
+ 
 }
 
 function cliqueFerramenta(evento) {
@@ -214,10 +250,8 @@ function atualizaSlot(slotHtml, slot) {
   //se tem planta, pode ser removido; se não tem, pode ser colocado
   // de todo modo, plantado é atualizada (mesmo que seja null)
   slotHtml.setAttribute("planta", slot.planta.plantado);
-  if(slot.controleTempo)
-    slotHtml.setAttribute("controleTempo","true");
-  else
-    slotHtml.setAttribute("controleTempo", "false");
+  if (slot.controleTempo) slotHtml.setAttribute("controleTempo", "true");
+  else slotHtml.setAttribute("controleTempo", "false");
 }
 
 //avança uma semana, unidade de tempo do jogo
@@ -245,30 +279,5 @@ function atualizaTerreno() {
     // whose id property matches the specified string.
     const slotHtml = document.getElementById(terreno[i].id);
     atualizaSlot(slotHtml, terreno[i]);
-  }
-}
-
-// atualiza os dados em função do avanço de tempo
-function avancaTempoSlot(slot) {
-  slot.controleTempo = true;
-  if (slot.estado === "plantado") {
-    //se a planta está há 5 semanas sem água, isto é, está para completar 6 semanas, ela morre e o terreno é limpo
-    if (slot.planta.tempoSede === 5) {
-      arrancar(slot);
-      return;
-    }
-    //se tempoSede > 0, aumenta o tempo de sede e não cresce
-    if (slot.planta.sede) {
-      //incrementa o tempo de sede
-      slot.planta.tempoSede++;
-    } else {
-      //se a planta não está com sede, ela cresce desde que já não esteja no crescimento maaximo, e volta a ficar com sede
-      if (slot.planta.ciclosCrescimento < slot.planta.crescimentoMaximo)
-      {
-        slot.planta.ciclosCrescimento++;
-        slot.planta.sede = true;
-        slot.planta.tempoSede = 1;
-      }  
-    }
   }
 }
