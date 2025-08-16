@@ -1,20 +1,22 @@
 
 //ciclar nos slots    
-export function clicaSlot(slot, controle)
+export function clicaSlot(slot, jogador)
 {
-    switch(controle.acao) 
+    switch(jogador.controle.acao) 
     {
         case "plantar":
-            plantar(slot, controle.semente);
+            plantar(slot, jogador.controle.semente);
             break;
         case "regar":
             regar(slot);
+            //regar tem efeito uma vez por semana
+            slot.controleTempo = false;
             break;
         case "arar":
             arar(slot);
             break; 
         case "colher":
-            colher(slot);
+            colher(slot, jogador);
             break;
         case "arrancar":
             arrancar(slot);
@@ -35,17 +37,37 @@ function plantar(slot, sementePlanta)
         slot.estado = "plantado";
         slot.planta.plantado = sementePlanta;
         slot.planta.sede = true;
-       // calculaCiclosCrescimento(slot);
+        slot.planta.tempoSede = 1;
+        slot.planta.ciclosCrescimento = 0;
+        calculaCiclosCrescimentoMaximo(slot);
+    }
+}
+
+function calculaCiclosCrescimentoMaximo(slot) 
+{
+    switch(slot.planta.plantado) 
+    {
+        case "cenoura":
+            slot.planta.crescimentoMaximo = 2;
+            break;  
+        case"batata":
+            slot.planta.crescimentoMaximo = 3;    
+            break;
+        case "tomate":
+            slot.planta.crescimentoMaximo = 5;    
+            break;    
     }
 }
 
 function regar(slot) 
 {
+    if(slot.controleTempo){
     //verifica se o slot está plantado
     if(slot.estado === "plantado")
-    {
-            slot.planta.sede = false;
-            slot.planta.tempoSede = 0;
+        {
+                slot.planta.sede = false;
+                slot.planta.tempoSede = 0;
+        }
     }
 }
 
@@ -57,33 +79,37 @@ function arar(slot)
     }
 }
 
-function colher(slot) 
+function colher(slot, jogador) 
 {
     //verifica se o slot está plantado
     if(slot.estado === "plantado") 
     {
-        colocaSilo(slot.planta.plantado);
-        zeraSlot(slot);
+        //verifica se a planta está no ponto de colheita
+        if(slot.planta.ciclosCrescimento === slot.planta.crescimentoMaximo)
+        {
+            colocaSilo(slot.planta.plantado, jogador);
+            zeraSlot(slot);
+        }
     }
 }
 
-function colocaSilo(planta) 
+function colocaSilo(plantado, jogador) 
 {
-    switch(planta) 
+    switch(plantado) 
     {
         case "tomate":
-            jogador.silo.trigo++;
+            jogador.siloEstoque.tomate++;
             break;
         case "cenoura":
-            jogador.silo.cenoura++;
+            jogador.siloEstoque.cenoura++;
             break;
         case "batata":
-            jogador.silo.café++;
+            jogador.siloEstoque.batata++;
             break;
     }
 }
 
-function arrancar(slot) 
+export function arrancar(slot) 
 {
     //verifica se o slot está plantado
     if(slot.estado === "plantado")
@@ -107,7 +133,7 @@ function zeraSlot(slot)
 {
     slot.estado = "vazio";
     slot.planta.plantado = null;
-    slot.planta.ciclosCresscimento = -1;
+    slot.planta.ciclosCrescimento = -1;
     slot.planta.sede = false;
     slot.planta.tempoSede = 0;
 }

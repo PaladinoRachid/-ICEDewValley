@@ -32,6 +32,8 @@ h1
 #jogo 
 {
   height: 100%;
+  width: 100%;
+
 }
 
 .terreno 
@@ -121,6 +123,38 @@ h1
   background-size: cover;
 }
 
+.slot[controleTempo = "false"]
+{
+  background-color: aqua;
+}
+
+.barraStatus
+{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: blueviolet;
+  justify-content: center;
+  align-items: center;
+  width: 9%;
+}
+
+#tempoExibidor
+{
+  height: 27.5px;
+  background-color: aquamarine;
+  width: 100%;
+  text-align: center;
+}
+#tempoBotao
+{
+  height: 27.5px;
+  width: 100%;
+  background-color: aquamarine;
+  
+}
+
+
 .barraFerramentas 
 {
 
@@ -177,4 +211,21 @@ h1
   padding: 10px;
   border: none;
   border-radius: 50px;
+}
+
+.tempo
+{
+  
+  background-color: cyan;
+  width: 100%;
+  
+
+}
+
+.dinheiro
+{
+  background-color: indigo;
+  padding: 10%; 
+  height: 50px;
+  width: 100%;
 }

@@ -14,17 +14,20 @@ export function criarJogador()
         dinheiro: 100,
         siloEstoque: 
         {
-            trigo: 0,
             cenoura: 0,
-            café: 0
+            tomate: 0,
+            batata: 0
         },
         siloSementes:
          {
-            trigo: 5,
             cenoura: 5,
-            café: 5
+            tomate: 5,
+            batata: 5
         },
         //registra o tempo de jogo
+        semana: 0,
+        controleTempo: true
+       
         
     };
     return fazendeiro;
