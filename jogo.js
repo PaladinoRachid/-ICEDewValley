@@ -85,7 +85,7 @@ function cliqueTerreno(evento) {
   const slot = terreno[id];
   const plantaNome = slot.planta.plantado;
   clicaSlot(slot, jogador);
-  //atualiza a parte visual (falta o contador de semente)
+  //atualiza a parte visual 
   const idPlantas = {
     cenoura: 500,
     batata: 1000,
@@ -176,20 +176,21 @@ function desenhaSilo(jogador, loja, jogo) {
     const sementeNome = sementes[i];
 
     const semente = document.createElement("div");
-    const exibidorSemente = document.createElement("div");
+    //const exibidorSemente = document.createElement("div");
     const botaoSemente = document.createElement("button");
     const botaoSementeComprar = document.createElement("button");
 
     semente.classList.add("semente");
     botaoSemente.classList.add("botaoSemente");
-    exibidorSemente.classList.add("exibidorSemente");
-    exibidorSemente.setAttribute("id", sementeNome);
+    botaoSemente.setAttribute("id", sementeNome);
+    //exibidorSemente.classList.add("exibidorSemente");
+    //exibidorSemente.setAttribute("id", sementeNome);
     botaoSementeComprar.classList.add("botaoSementeComprar");
 
     const auxQuantidade = jogador.siloSementes[sementeNome];
 
-    exibidorSemente.textContent = `quant. ${auxQuantidade}`;
-    botaoSemente.textContent = sementes[i];
+    //exibidorSemente.textContent = `quant. ${auxQuantidade}`;
+    botaoSemente.textContent = `${sementes[i]} (${auxQuantidade})`;
     const auxPreco = loja.valorSementes[sementeNome];
     botaoSementeComprar.textContent = `Comprar ($${auxPreco})`;
 
@@ -198,7 +199,7 @@ function desenhaSilo(jogador, loja, jogo) {
 
     //adiciona o botão no silo / barra de atividades
     semente.append(botaoSemente);
-    semente.append(exibidorSemente);
+    //semente.append(exibidorSemente);
     semente.append(botaoSementeComprar);
     silo.append(semente);
 
@@ -226,9 +227,9 @@ function sementeComprar(jogo, jogador, loja, semente) {
 }
 
 function atualizaSemente(semente, jogador) {
-  const exibidor = document.getElementById(semente);
+  const botao = document.getElementById(semente);
   const auxQuantidade = jogador.siloSementes[semente];
-  exibidor.textContent = `quant. ${auxQuantidade}`;
+  botao.textContent = `${semente}(${auxQuantidade})`;
 }
 
 function atualizaDinheiro(jogo, jogador) {
@@ -238,7 +239,7 @@ function atualizaDinheiro(jogo, jogador) {
 
 function cliqueSemente(tipoSemente, jogador, botao) {
   //atualiza o controle
-  if (jogador.siloSementes[tipoSemente] <= 0) {
+  if (jogador.siloSementes[tipoSemente] === 0) {
     alert("Você não tem sementes suficientes!");
     return;
   }

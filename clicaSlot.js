@@ -32,17 +32,20 @@ export function clicaSlot(slot, jogador)
 function plantar(slot, jogador) 
 {
     //verifica se o slot está pronto para a plantio 
+    const sementeNome = jogador.controle.semente;
     if(slot.estado === "arado")
     {
-        const sementePlantar = jogador.controle.semente;
-        slot.estado = "plantado";
-        slot.planta.plantado = sementePlantar;
-        slot.planta.sede = true;
-        slot.planta.tempoSede = 1;
-        slot.planta.ciclosCrescimento = 0;
-        calculaCiclosCrescimentoMaximo(slot);
-        // diminui uma semente no silo
-        jogador.siloSementes[sementePlantar]--;
+        if(jogador.siloSementes[sementeNome] > 0)
+        {
+            slot.estado = "plantado";
+            slot.planta.plantado = sementeNome;
+            slot.planta.sede = true;
+            slot.planta.tempoSede = 1;
+            slot.planta.ciclosCrescimento = 0;
+            calculaCiclosCrescimentoMaximo(slot);
+            // diminui uma semente no silo
+            jogador.siloSementes[sementeNome]--;
+        }
     }
 }
 
