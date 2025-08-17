@@ -45,7 +45,6 @@ function base(jogo) {
   const siloEstoque = document.createElement("div");
   siloEstoque.classList.add("siloEstoque");
 
-
   //adiciona os compoentes da barra de atividades
   fundoBarraAtividades.append(barraStatus);
   fundoBarraAtividades.append(barraFerramentas);
@@ -88,20 +87,18 @@ function cliqueTerreno(evento) {
   clicaSlot(slot, jogador);
   //atualiza a parte visual (falta o contador de semente)
   const idPlantas = {
-  cenoura: 500,
-  batata: 1000,
-  tomate: 1500
+    cenoura: 500,
+    batata: 1000,
+    tomate: 1500,
   };
-  atualizaSlot(slotClicado,slot);
-  if(jogador.controle.acao === "plantar")
-  {
+  atualizaSlot(slotClicado, slot);
+  if (jogador.controle.acao === "plantar") {
     const sementeNome = jogador.controle.semente;
-    atualizaSemente(sementeNome, jogador); 
+    atualizaSemente(sementeNome, jogador);
   }
-  if(jogador.controle.acao === "colher")
-  {  
-    const ide = idPlantas[plantaNome]; 
-    atualizaPlanta(plantaNome,jogador,ide);
+  if (jogador.controle.acao === "colher") {
+    const ide = idPlantas[plantaNome];
+    atualizaPlanta(plantaNome, jogador, ide);
   }
   //atualizaBarraAtividades(jogador);
 }
@@ -112,8 +109,20 @@ function desenhaBarraStatus(jogo, jogador, terreno) {
   const barraStatus = jogo.querySelector(".barraStatus");
   const dinheiroHtml = document.createElement("div");
   dinheiroHtml.classList.add("dinheiro");
+  //https://developer.mozilla.org/pt-BR/docs/Web/HTML/Reference/Elements/img
+  const dinheiroIcone = document.createElement("img");
+  dinheiroIcone.src = '../imagens/moeda2.png';
+  dinheiroIcone.setAttribute("tipo", "dinheiroIcone");
+  const dinheiroTexto = document.createElement( "div");
+  dinheiroTexto.textContent=`${jogador.dinheiro}`;
+  dinheiroTexto.setAttribute("tipo", "dinheiroTexto");
+  dinheiroHtml.append(dinheiroIcone);
+  dinheiroHtml.append(dinheiroTexto);
+
+  
+
   //${variavel} dentro de '' faz aparecer o valor da variável no texto
-  dinheiroHtml.textContent = `Dinheiro: $${jogador.dinheiro}`;
+ // dinheiroHtml.textContent = `Dinheiro: $${jogador.dinheiro}`;
 
   const tempoHtml = document.createElement("div");
   tempoHtml.classList.add("tempo");
@@ -164,7 +173,6 @@ function desenhaSilo(jogador, loja, jogo) {
   const sementes = ["cenoura", "batata", "tomate"];
   //para cada semente, cria um botão, adiciona texto e um evento ao clicar
   for (let i = 0; i < sementes.length; i++) {
-
     const sementeNome = sementes[i];
 
     const semente = document.createElement("div");
@@ -193,7 +201,7 @@ function desenhaSilo(jogador, loja, jogo) {
     semente.append(exibidorSemente);
     semente.append(botaoSementeComprar);
     silo.append(semente);
-    
+
     botaoSemente.addEventListener("click", (evento) => {
       //pega o botao
       const botao = evento.target;
@@ -224,11 +232,11 @@ function atualizaSemente(semente, jogador) {
 }
 
 function atualizaDinheiro(jogo, jogador) {
-  const dinheiroExibidor = jogo.querySelector(".dinheiro");
-  dinheiroExibidor.textContent = `Dinheiro: $${jogador.dinheiro}`;
+  const dinheiroExibidor = jogo.querySelector(".dinheiro div");
+  dinheiroExibidor.textContent = `${jogador.dinheiro}`;
 }
 
-function cliqueSemente(tipoSemente, jogador,  botao) {
+function cliqueSemente(tipoSemente, jogador, botao) {
   //atualiza o controle
   if (jogador.siloSementes[tipoSemente] <= 0) {
     alert("Você não tem sementes suficientes!");
@@ -247,24 +255,21 @@ function cliqueSemente(tipoSemente, jogador,  botao) {
     botoes[i].classList.remove("selecionado");
   }
   botao.classList.add("selecionado");
- 
 }
 
 // plano inicial era fazer uma aba com o estoque, mas reli as instruçõs do trabalho e não vai ter essa aba;
 // no lugar vamos fazer a operação de venda junto com a de colher (ele colhe e automaticamente vende e cai o dinheiro)
-function desenhaSiloEstoque(jogador, loja, jogo)
-{
+function desenhaSiloEstoque(jogador, loja, jogo) {
   const siloEstoque = jogo.querySelector(".siloEstoque");
   const plantas = ["cenoura", "batata", "tomate"];
   //para cada planta, cria um div(identificar com o nome da planta), adiciona contador, e um botao de venda
   // cria id para as plantas
   const idPlantas = {
-  cenoura: 500,
-  batata: 1000,
-  tomate: 1500
+    cenoura: 500,
+    batata: 1000,
+    tomate: 1500,
   };
   for (let i = 0; i < plantas.length; i++) {
-
     const plantaNome = plantas[i];
 
     const planta = document.createElement("div");
@@ -276,7 +281,7 @@ function desenhaSiloEstoque(jogador, loja, jogo)
     botaoPlantaVender.classList.add("botaoPlantaVender");
     const id = idPlantas[plantaNome];
     exibidorPlanta.classList.add("exibidorPlanta");
-    exibidorPlanta.setAttribute("id",id);
+    exibidorPlanta.setAttribute("id", id);
     // exibidorPlanta.setAttribute("id", plantaNome); daria id repetido com as sementes
     botaoPlantaVender.classList.add("botaoPlantaVender");
 
@@ -287,14 +292,14 @@ function desenhaSiloEstoque(jogador, loja, jogo)
 
     const auxPreco = loja.valorPlantas[plantaNome];
     botaoPlantaVender.textContent = `Vender ($${auxPreco})`;
-    botaoPlantaVender.setAttribute("tipoPlanta", plantaNome)
+    botaoPlantaVender.setAttribute("tipoPlanta", plantaNome);
 
     //adiciona o botão no silo / barra de atividades
-   // planta.append(identificadorPlanta);
+    // planta.append(identificadorPlanta);
     planta.append(exibidorPlanta);
     planta.append(botaoPlantaVender);
     siloEstoque.append(planta);
-    
+
     botaoPlantaVender.addEventListener("click", () => {
       plantaVender(jogo, jogador, loja, plantaNome, id);
     });
@@ -311,18 +316,11 @@ function plantaVender(jogo, jogador, loja, planta, id) {
   atualizaDinheiro(jogo, jogador);
 }
 
-
-function atualizaPlanta(planta,jogador, id)
-{
-
+function atualizaPlanta(planta, jogador, id) {
   const exibidor = document.getElementById(id);
   const auxQuantidade = jogador.siloEstoque[planta];
   exibidor.textContent = `${planta}s: ${auxQuantidade}`;
 }
-
-
-
-
 
 function cliqueFerramenta(evento) {
   const botao = evento.target;
@@ -349,27 +347,16 @@ function atualizaSlot(slotHtml, slot) {
   else slotHtml.setAttribute("controleTempo", "false");
 }
 
-
-
-
-
-
-
-
-
 //avança uma semana, unidade de tempo do jogo
 function passaTempo(jogador, terreno) {
   //incrementa a semana
   jogador.semana++;
   //reseta o controle
-
   //atualiza cada slot
   for (let i = 0; i < terreno.length; i++) {
     avancaTempoSlot(terreno[i]);
   }
-
   //atualiza a parte visual do terreno
-
   atualizaTerreno();
 }
 
