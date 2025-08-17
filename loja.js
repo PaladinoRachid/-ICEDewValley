@@ -2,7 +2,7 @@ export function criarLoja()
 {
     const loja = 
     {
-        valorSemnetes: 
+        valorSementes: 
         {
             cenoura: 5,
             batata: 10,

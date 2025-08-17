@@ -20,9 +20,9 @@ export function criarJogador()
         },
         siloSementes:
          {
-            cenoura: 5,
-            batata: 6,
-            tomate: 7
+            cenoura: 3,
+            batata: 2,
+            tomate: 1
         },
         //registra o tempo de jogo
         semana: 0,

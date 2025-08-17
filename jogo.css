@@ -136,7 +136,7 @@ h1
   background-color: blueviolet;
   justify-content: center;
   align-items: center;
-  width: 9%;
+  width: 10%;
 }
 
 #tempoExibidor
@@ -166,18 +166,26 @@ h1
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 50%;
+  width: 40%;
 }
 
 .silo
 {
   background-color: brown;
   height: 100%;
-  width: 50%;
+  width: 32%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.siloEstoque
+{
+  height: 100%;
+  display: 20%;
+  flex-direction: row;
+  background-color: blue;
 }
 
 .ferramenta
