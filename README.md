@@ -17,15 +17,14 @@ Este projeto tem como objetivo implementar **ICEDew Valley**, utilizando **HTML,
 A ideia é implementar um jogo que permita: 
 
 * Um canteiro inicial em uma grade 12x12 inicial com espaços vazios, com pedras e ervas daninhas;
-* limpar o canteiro com com um clique do mouse ou cursor (não precisa fazer um personagem);
+* limpar o canteiro com com um clique do mouse ou cursor;
 * selecionar um de três tipos de sementes para plantar;
 * preparar o solo para plantar;
 * plantar a semente selecionada;
 * regar um canteiro;
 * as plantas ter um crescimento em números diferentes de fases;
-* colher plantas com crescimento máximo (dê dinheiro para comprar novas sementes);
+* colher plantas com crescimento máximo;
 * plantas não regadas morrem;
-* você pode criar variações ou inserir a complexidade que quiser, mas tenha certeza que consegue enviar e apresentar antes do prazo;
 * a passagem de tempo pode ser feita com um timer ou com um clique de um botão.
 
 ## Crédito das imagens.
