@@ -3,6 +3,7 @@ import { criarJogador } from "./jogador.js";
 import { clicaSlot } from "./clicaSlot.js";
 import { criarLoja } from "./loja.js";
 import { avancaTempoSlot } from "./avancatempo.js";
+
 //...........................................................................................
 //Pablo Rachid de Bem --- 202365126AC
 //o que falta:
@@ -180,8 +181,14 @@ function desenhaBarraFerramentas(jogo) {
 
 function desenhaSilo(jogador, loja, jogo) {
   const silo = jogo.querySelector(".silo");
+  const siloCont = document.createElement("div");
+  siloCont.classList.add("siloCont");
   const sementes = ["cenoura", "batata", "tomate"];
   //para cada semente, cria um botão, adiciona texto e um evento ao clicar
+  const tituloSilo = document.createElement("h3");
+  tituloSilo.textContent = "Sementes";
+  tituloSilo.setAttribute("id", "tituloSilo");
+  silo.append(tituloSilo);
   for (let i = 0; i < sementes.length; i++) {
     const sementeNome = sementes[i];
 
@@ -211,7 +218,7 @@ function desenhaSilo(jogador, loja, jogo) {
     semente.append(botaoSemente);
     //semente.append(exibidorSemente);
     semente.append(botaoSementeComprar);
-    silo.append(semente);
+    siloCont.append(semente);
 
     botaoSemente.addEventListener("click", (evento) => {
       //pega o botao
@@ -224,6 +231,7 @@ function desenhaSilo(jogador, loja, jogo) {
       sementeComprar(jogo, jogador, loja, sementeNome);
     });
   }
+  silo.append(siloCont);
 }
 
 function sementeComprar(jogo, jogador, loja, semente) {
@@ -273,6 +281,7 @@ function cliqueSemente(tipoSemente, jogador, botao) {
 function desenhaSiloEstoque(jogador, loja, jogo) {
   const siloEstoque = jogo.querySelector(".siloEstoque");
   const plantas = ["cenoura", "batata", "tomate"];
+  const imagens = ["../imagens/cenoura.png","../imagens/batata.png", "../imagens/tomate.png"];
   //para cada planta, cria um div(identificar com o nome da planta), adiciona contador, e um botao de venda
   // cria id para as plantas
   const idPlantas = {
@@ -285,6 +294,11 @@ function desenhaSiloEstoque(jogador, loja, jogo) {
 
     const planta = document.createElement("div");
     const exibidorPlanta = document.createElement("div");
+    const imagemPlanta = document.createElement("img");
+    imagemPlanta.src= imagens[i];
+    const plantaConteiner = document.createElement("div");
+    plantaConteiner.classList.add("plantaConteiner");
+    imagemPlanta.classList.add("imagemPlanta");
     //const identificadorPlanta = document.createElement("div");
     const botaoPlantaVender = document.createElement("button");
 
@@ -298,7 +312,7 @@ function desenhaSiloEstoque(jogador, loja, jogo) {
 
     const auxQuantidade = jogador.siloEstoque[plantaNome];
 
-    exibidorPlanta.textContent = ` ${plantaNome}s: ${auxQuantidade}`;
+    exibidorPlanta.textContent = `${auxQuantidade}`;
     //identificadorPlanta.textContent = plantas[i];
 
     const auxPreco = loja.valorPlantas[plantaNome];
@@ -307,7 +321,9 @@ function desenhaSiloEstoque(jogador, loja, jogo) {
 
     //adiciona o botão no silo / barra de atividades
     // planta.append(identificadorPlanta);
-    planta.append(exibidorPlanta);
+    plantaConteiner.append(imagemPlanta);
+    plantaConteiner.append(exibidorPlanta);
+    planta.append(plantaConteiner);
     planta.append(botaoPlantaVender);
     siloEstoque.append(planta);
 
@@ -330,7 +346,7 @@ function plantaVender(jogo, jogador, loja, planta, id) {
 function atualizaPlanta(planta, jogador, id) {
   const exibidor = document.getElementById(id);
   const auxQuantidade = jogador.siloEstoque[planta];
-  exibidor.textContent = `${planta}s: ${auxQuantidade}`;
+  exibidor.textContent = `${auxQuantidade}`;
 }
 
 function cliqueFerramenta(evento) {
