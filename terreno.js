@@ -22,7 +22,7 @@ function criaSlot(i)
         planta:
         {
             plantado: null,
-            ciclosCresscimento: -1,
+            ciclosCrescimento: -1,
             crescimentoMaximo: 0,
             sede: false,
             tempoSede: 0

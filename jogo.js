@@ -3,6 +3,7 @@ import { criarJogador } from "./jogador.js";
 import { clicaSlot } from "./clicaSlot.js";
 import { criarLoja } from "./loja.js";
 import { avancaTempoSlot } from "./avancatempo.js";
+import {criarPlantasCrescendo} from "./plantasCrescendo.js"
 
 //...........................................................................................
 //Pablo Rachid de Bem --- 202365126AC
@@ -64,6 +65,8 @@ function desenhaTerreno(terreno, jogo) {
 function desenhaSlot(fundoTerreno, slot) {
   //ideia é criar uma imagem dentro do divSlot
   const imagemSlot = document.createElement("img");
+  // id da imagem no intervalo (10000, 10143)
+  imagemSlot.setAttribute("id", slot.id + 10000);
   decideImagemSlot(imagemSlot, slot);
   imagemSlot.classList.add("imagemSlot");
   const divSlot = document.createElement("div");
@@ -95,9 +98,12 @@ function decideImagemSlot(imagemSlot, slot){
 
 function cliqueTerreno(evento) {
   //pega o slot html
-  const slotClicado = evento.target;
+  //evento.currentTarget garante que se refere ao elemento ao qual listener foi anexado
+  const slotClicado = evento.currentTarget;
   // pega o id para identificar o slot no array terreno
   const id = slotClicado.getAttribute("id");
+  //parseInt converte para inteiro o id string para poder somar com 10000
+  const imagemSlot = document.getElementById(parseInt(id)+10000);
   //altera o array terreno
   const slot = terreno[id];
   const plantaNome = slot.planta.plantado;
@@ -108,16 +114,36 @@ function cliqueTerreno(evento) {
     batata: 1000,
     tomate: 1500,
   };
+
   atualizaSlot(slotClicado, slot);
+  atualizaIcone(imagemSlot, slot);
   if (jogador.controle.acao === "plantar") {
     const sementeNome = jogador.controle.semente;
     atualizaSemente(sementeNome, jogador);
   }
+
   if (jogador.controle.acao === "colher") {
     const ide = idPlantas[plantaNome];
     atualizaPlanta(plantaNome, jogador, ide);
   }
   //atualizaBarraAtividades(jogador);
+}
+
+function atualizaIcone(imagemSlot, slot)
+{
+  if(slot.estado === "arado")
+    imagemSlot.src = "../imagens/arado.png";
+   
+  if(slot.estado === "vazio")
+    imagemSlot.src = "../imagens/vazio.png";
+
+  if(slot.estado === "plantado")
+  {
+    const plantas = criarPlantasCrescendo();
+    const tipoPlanta = slot.planta.plantado;
+    const estagioPlanta = slot.planta.ciclosCrescimento;
+    imagemSlot.src = plantas[tipoPlanta][estagioPlanta];
+  }
 }
 
 function desenhaBarraStatus(jogo, jogador, terreno) {
@@ -410,7 +436,11 @@ function atualizaTerreno() {
     // getElementyById The getElementById() method of the Document
     // interface returns an Element object representing the element
     // whose id property matches the specified string.
-    const slotHtml = document.getElementById(terreno[i].id);
-    atualizaSlot(slotHtml, terreno[i]);
+    const slot = terreno[i];
+    const id = slot.id;
+    const imagemSlot = document.getElementById(parseInt(id)+10000);
+    const slotHtml = document.getElementById(id);
+    atualizaSlot(slotHtml, slot);
+    atualizaIcone(imagemSlot,slot);
   }
 }

@@ -54,13 +54,13 @@ function calculaCiclosCrescimentoMaximo(slot)
     switch(slot.planta.plantado) 
     {
         case "cenoura":
-            slot.planta.crescimentoMaximo = 2;
+            slot.planta.crescimentoMaximo = 1;
             break;  
         case"batata":
-            slot.planta.crescimentoMaximo = 4;    
+            slot.planta.crescimentoMaximo = 3;    
             break;
         case "tomate":
-            slot.planta.crescimentoMaximo = 3;    
+            slot.planta.crescimentoMaximo = 2;    
             break;    
     }
 }

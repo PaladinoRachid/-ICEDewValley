@@ -27,6 +27,9 @@ h1
   color: burlywood;
   /* cor de fundo */
   background-color: brown;
+  /*espaçamento entre as letras*/
+  letter-spacing: 3px;
+
 }
 
 #jogo 
@@ -90,12 +93,12 @@ h1
 
 .slot[estado="arado"] 
 {
-  background-color:saddlebrown; 
+  background-color:#9B4D71; 
 }
 
 .slot[estado="plantado"] 
 {
-  background-color: goldenrod; 
+  background-color: #9B4D71; 
 }
 
 .slot[estado="pedra"] 
@@ -108,6 +111,7 @@ h1
   background-color: lightgreen; 
 }
 
+/*
 .slot[planta = "batata"]
 {
   background-color: white;
@@ -125,7 +129,7 @@ h1
   background-color: red;
   background-size: cover;
 }
-
+*/
 .slot[controleTempo = "false"]
 {
   background-color: aqua;
@@ -151,7 +155,7 @@ h1
 #tempoExibidor
 {
   height: 27.5px;
-  background-color: antiquewhite;
+  background-color: lightsalmon;
   width: 100%;
   text-align: center;
 }
