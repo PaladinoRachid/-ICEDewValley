@@ -199,6 +199,18 @@ h1
   /* Arredonda*/
   border-radius: 50px;
 }
+.ferramentaCont
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ferramentaImag
+{
+  width: 30px;
+  height: 30px;
+}
 
 /*seleciona o img filho de .dinheiro*/
 .dinheiro img

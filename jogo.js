@@ -152,18 +152,28 @@ function desenhaBarraStatus(jogo, jogador, terreno) {
 }
 
 function desenhaBarraFerramentas(jogo) {
-  const ferramentas = ["ancinho", "regador", "mao", "lixo", "pá"];
+  const nomesAcoes = ["Arar", "Regar", "Colher", "Descartar", "Limpar"];
   const acoes = ["arar", "regar", "colher", "arrancar", "limpar"];
+  const imagens = ["../imagens/arador.png", '../imagens/regador.png', '../imagens/mao.png', '../imagens/lixo.png', '../imagens/ferramentas.png'];
   const barraFerramentas = jogo.querySelector(".barraFerramentas");
-  for (let i = 0; i < ferramentas.length; i++) {
+  for (let i = 0; i < nomesAcoes.length; i++) {
     //para cada ferramenta, cria um botao, adiiona texto e um evento ao clicar
     //cria os botões das ferramentas
+    const ferramentaCont = document.createElement("div");
+    const ferramentaImag = document.createElement("img");
+    ferramentaImag.src = imagens[i];
+    ferramentaImag.classList.add("ferramentaImag");
     const ferramenta = document.createElement("button");
     ferramenta.classList.add("ferramenta");
-    ferramenta.textContent = ferramentas[i];
+    ferramentaCont.classList.add("ferramentaCont");
+    ferramenta.textContent = nomesAcoes[i];
     ferramenta.setAttribute("acao", acoes[i]);
     //adiciona o botão na barra de ferramentas
-    barraFerramentas.append(ferramenta);
+    ferramentaCont.append(ferramentaImag);
+    ferramentaCont.append(ferramenta);
+    
+
+    barraFerramentas.append(ferramentaCont);
     ferramenta.addEventListener("click", cliqueFerramenta);
   }
 }
