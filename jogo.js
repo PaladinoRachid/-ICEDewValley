@@ -320,8 +320,6 @@ function cliqueSemente(tipoSemente, jogador, botao) {
   botao.classList.add("selecionado");
 }
 
-// plano inicial era fazer uma aba com o estoque, mas reli as instruçõs do trabalho e não vai ter essa aba;
-// no lugar vamos fazer a operação de venda junto com a de colher (ele colhe e automaticamente vende e cai o dinheiro)
 function desenhaSiloEstoque(jogador, loja, jogo) {
   const siloEstoque = jogo.querySelector(".siloEstoque");
   const plantas = ["cenoura", "batata", "tomate"];
