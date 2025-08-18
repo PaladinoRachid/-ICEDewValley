@@ -5,15 +5,15 @@ export function criarLoja()
         valorSementes: 
         {
             cenoura: 5,
-            batata: 10,
-            tomate: 15
+            batata: 15,
+            tomate: 10
         },
 
         valorPlantas:
          {
             cenoura: 10,
-            batata: 25,
-            tomate: 50
+            batata: 50,
+            tomate: 25
         },
        
         

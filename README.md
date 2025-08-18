@@ -3,6 +3,18 @@ Trabalho de Desenvolvimento Web feito com HTML, CSS e JavaScript.
 
 Crédito das imagens.
 
+vazio(grama): <a href="https://www.flaticon.com/free-icons/grass" title="grass icons">Grass icons created by Iconriver - Flaticon</a>
+
+rocha1:<a href="https://www.flaticon.com/free-icons/stone" title="stone icons">Stone icons created by bastian 5 - Flaticon</a>
+
+rocha2: <a href="https://www.flaticon.com/free-icons/geology" title="geology icons">Geology icons created by vectorsmarket15 - Flaticon</a>
+
+rocha3:<a href="https://www.flaticon.com/free-icons/coal" title="coal icons">Coal icons created by Nsit - Flaticon</a>
+
+erva-daninha: <a href="https://www.flaticon.com/free-icons/weed" title="Weed icons">Weed icons created by Freepik - Flaticon</a>
+
+plantasCrescendo: https://hellorumin.itch.io/pixel-farm-asset-pack; @HelloRumin 
+
 moedas(dinheiro): www.kenney.nl
 
 arador(arar): <a href="https://www.flaticon.com/free-icons/plow" title="plow icons">Plow icons created by agus raharjo - Flaticon</a>

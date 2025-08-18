@@ -62,12 +62,17 @@ function desenhaTerreno(terreno, jogo) {
 }
 
 function desenhaSlot(fundoTerreno, slot) {
+  //ideia é criar uma imagem dentro do divSlot
+  const imagemSlot = document.createElement("img");
+  decideImagemSlot(imagemSlot, slot);
+  imagemSlot.classList.add("imagemSlot");
   const divSlot = document.createElement("div");
   //classe slot
   divSlot.classList.add("slot");
   // seta id, estddo e planta comoa atributos do slot
   divSlot.setAttribute("id", slot.id);
   divSlot.setAttribute("estado", slot.estado);
+  divSlot.append(imagemSlot);
   if (slot.planta.plantado) {
     divSlot.setAttribute("planta", slot.planta.plantado);
   }
@@ -76,6 +81,17 @@ function desenhaSlot(fundoTerreno, slot) {
   fundoTerreno.append(divSlot);
   divSlot.addEventListener("click", cliqueTerreno);
 }
+
+function decideImagemSlot(imagemSlot, slot){
+  if(slot.estado === "pedra")
+    imagemSlot.src ='../imagens/rocha3.png';
+  
+  if(slot.estado === "ervaDaninha")
+    imagemSlot.src ='../imagens/ervaDaninha.png';
+
+  if(slot.estado === "vazio")
+    imagemSlot.src = "../imagens/vazio.png";
+  }
 
 function cliqueTerreno(evento) {
   //pega o slot html

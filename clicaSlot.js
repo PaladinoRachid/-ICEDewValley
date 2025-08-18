@@ -57,10 +57,10 @@ function calculaCiclosCrescimentoMaximo(slot)
             slot.planta.crescimentoMaximo = 2;
             break;  
         case"batata":
-            slot.planta.crescimentoMaximo = 3;    
+            slot.planta.crescimentoMaximo = 4;    
             break;
         case "tomate":
-            slot.planta.crescimentoMaximo = 5;    
+            slot.planta.crescimentoMaximo = 3;    
             break;    
     }
 }
