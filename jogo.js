@@ -87,13 +87,13 @@ function desenhaSlot(fundoTerreno, slot) {
 
 function decideImagemSlot(imagemSlot, slot){
   if(slot.estado === "pedra")
-    imagemSlot.src ='../imagens/rocha3.png';
+    imagemSlot.src ='imagens/rocha3.png';
   
   if(slot.estado === "ervaDaninha")
-    imagemSlot.src ='../imagens/ervaDaninha.png';
+    imagemSlot.src ='imagens/ervaDaninha.png';
 
   if(slot.estado === "vazio")
-    imagemSlot.src = "../imagens/vazio.png";
+    imagemSlot.src = "imagens/vazio.png";
   }
 
 function cliqueTerreno(evento) {
@@ -132,10 +132,10 @@ function cliqueTerreno(evento) {
 function atualizaIcone(imagemSlot, slot)
 {
   if(slot.estado === "arado")
-    imagemSlot.src = "../imagens/arado.png";
+    imagemSlot.src = "imagens/arado.png";
    
   if(slot.estado === "vazio")
-    imagemSlot.src = "../imagens/vazio.png";
+    imagemSlot.src = "imagens/vazio.png";
 
   if(slot.estado === "plantado")
   {
@@ -154,7 +154,7 @@ function desenhaBarraStatus(jogo, jogador, terreno) {
   dinheiroHtml.classList.add("dinheiro");
   //https://developer.mozilla.org/pt-BR/docs/Web/HTML/Reference/Elements/img
   const dinheiroIcone = document.createElement("img");
-  dinheiroIcone.src = '../imagens/moeda2.png';
+  dinheiroIcone.src = 'imagens/moeda2.png';
   dinheiroIcone.setAttribute("tipo", "dinheiroIcone");
   const dinheiroTexto = document.createElement( "div");
   dinheiroTexto.textContent=`${jogador.dinheiro}`;
@@ -199,7 +199,7 @@ function desenhaBarraStatus(jogo, jogador, terreno) {
 function desenhaBarraFerramentas(jogo) {
   const nomesAcoes = ["Arar", "Regar", "Colher", "Descartar", "Limpar"];
   const acoes = ["arar", "regar", "colher", "arrancar", "limpar"];
-  const imagens = ["../imagens/arador.png", '../imagens/regador.png', '../imagens/mao.png', '../imagens/lixo.png', '../imagens/ferramentas.png'];
+  const imagens = ["imagens/arador.png", 'imagens/regador.png', 'imagens/mao.png', 'imagens/lixo.png', 'imagens/ferramentas.png'];
   const barraFerramentas = jogo.querySelector(".barraFerramentas");
   for (let i = 0; i < nomesAcoes.length; i++) {
     //para cada ferramenta, cria um botao, adiiona texto e um evento ao clicar
@@ -325,7 +325,7 @@ function cliqueSemente(tipoSemente, jogador, botao) {
 function desenhaSiloEstoque(jogador, loja, jogo) {
   const siloEstoque = jogo.querySelector(".siloEstoque");
   const plantas = ["cenoura", "batata", "tomate"];
-  const imagens = ["imagens/cenoura.png","../imagens/batata.png", "../imagens/tomate.png"];
+  const imagens = ["imagens/cenoura.png","imagens/batata.png", "imagens/tomate.png"];
   //para cada planta, cria um div(identificar com o nome da planta), adiciona contador, e um botao de venda
   // cria id para as plantas
   const idPlantas = {
