@@ -27,7 +27,31 @@ A ideia é implementar um jogo que permita:
 * plantas não regadas morrem;
 * a passagem de tempo pode ser feita com um timer ou com um clique de um botão.
 
-## Crédito das imagens.
+## Descrição Sobre Este Jogo em Particular
+
+* Há três plantas, a saber, cenoura, tomate e batata.
+
+* Cenoura leva 1 unidade de tempo para crescer; tomate, 2; e batata, 3.
+
+* Para plantar é preciso clicar em uma semente e, em seguida, clicar em um terreno arado.
+
+* Você só pode arar terrenos com espaços vazios.
+
+* Espaços vazios são gerados sozinhos ou obtidos ao "limpar" um terreno com pedra ou erva daninha.
+
+* O tempo é contado em semanas, e você pode fazê-lo passar ao clicar em "avançar".
+
+* Plantas em crescimento não regadas por 5 semanas consecutivas morrem (e o terreno fica vazio automaticamente).
+
+## Sobre o Código
+
+* jogo.js é o coração do código e reuni toda a parte visual.
+
+* jogador, loja, terreno, plantasCrescendo (todos .js) definem funções que retornam objetos que auxiliam jogo.js
+
+* clicaSlot.js e avancaTempo.js têm funções importantes que foram modularizadas para maior clareza do código
+
+## Crédito das Imagens.
 
 * vazio(grama): <a href="https://www.flaticon.com/free-icons/grass" title="grass icons">Grass icons created by Iconriver - Flaticon</a>
 
