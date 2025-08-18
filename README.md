@@ -17,7 +17,7 @@ Este projeto tem como objetivo implementar **ICEDew Valley**, utilizando **HTML,
 A ideia é implementar um jogo que permita: 
 
 * Um canteiro inicial em uma grade 12x12 inicial com espaços vazios, com pedras e ervas daninhas;
-* limpar o canteiro com com um clique do mouse ou cursor;
+* limpar o canteiro com um clique do mouse ou cursor;
 * selecionar um de três tipos de sementes para plantar;
 * preparar o solo para plantar;
 * plantar a semente selecionada;
@@ -33,19 +33,19 @@ A ideia é implementar um jogo que permita:
 
 * Cenoura leva 1 unidade de tempo para crescer; tomate, 2; e batata, 3.
 
-* Para plantar é preciso clicar em uma semente e, em seguida, clicar em um terreno arado.
+* Para plantar, é preciso clicar em uma semente e, em seguida, clicar em um terreno arado.
 
-* Você só pode arar terrenos com espaços vazios.
+* Você só pode arar terrenos "vazios".
 
-* Espaços vazios são gerados sozinhos ou obtidos ao "limpar" um terreno com pedra ou erva daninha.
+* "Vazios" ão gerados ao carregar a página ou obtidos ao "limpar" um terreno "pedra" ou "ervaDaninha".
 
 * O tempo é contado em semanas, e você pode fazê-lo passar ao clicar em "avançar".
 
-* Plantas em crescimento não regadas por 5 semanas consecutivas morrem (e o terreno fica vazio automaticamente).
+* Plantas em crescimento não regadas por 5 semanas consecutivas morrem (e o terreno fica "vazio" automaticamente).
 
 ## Sobre o Código
 
-* jogo.js é o coração do código e reuni toda a parte visual.
+* jogo.js é o coração do código e reune toda a parte visual.
 
 * jogador, loja, terreno, plantasCrescendo (todos .js) definem funções que retornam objetos que auxiliam jogo.js
 
