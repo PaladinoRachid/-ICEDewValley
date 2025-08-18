@@ -176,7 +176,9 @@ function desenhaBarraStatus(jogo, jogador, terreno) {
   const tempoBotao = document.createElement("button");
   tempoBotao.setAttribute("id", "tempoBotao");
   tempoBotao.textContent = "Avançar";
+  
   // função sem parametros definida aqui mesmo para usar jogador e terreno
+
   tempoBotao.addEventListener("click", () => {
     // passar tempo
     passaTempo(jogador, terreno);
@@ -323,7 +325,7 @@ function cliqueSemente(tipoSemente, jogador, botao) {
 function desenhaSiloEstoque(jogador, loja, jogo) {
   const siloEstoque = jogo.querySelector(".siloEstoque");
   const plantas = ["cenoura", "batata", "tomate"];
-  const imagens = ["../imagens/cenoura.png","../imagens/batata.png", "../imagens/tomate.png"];
+  const imagens = ["imagens/cenoura.png","../imagens/batata.png", "../imagens/tomate.png"];
   //para cada planta, cria um div(identificar com o nome da planta), adiciona contador, e um botao de venda
   // cria id para as plantas
   const idPlantas = {
